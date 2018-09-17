@@ -18,7 +18,7 @@ Estrutura:
     * Dockfile contendo as configurações do serviço.    
 
 4. **postgres**
-    * postgres-data: deve ser criada por você. Crie /postgres/postgres-data.
+    * **./postgres/postgres-data**: a pasta deve ser criada por você. Crie /postgres/postgres-data. É o volume que guardará    os dados na sua máquina local
     * /**scripts**: 
         * init.sql: por padrão cria uma base de dados chamada Moodle; **[Você pode alterar]**
         
