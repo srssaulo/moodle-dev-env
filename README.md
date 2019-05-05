@@ -37,7 +37,37 @@ git clone https://github.com/srssaulo/moodle-dev-env.git
  - Vá até a raíz do projeto e execute o docker-compose.yml
  
 ```docker
-docker-compose up -d
+     docker-compose  -f docker-compose-php5.6 up -d
+```
+
+   ou
+            
+```docker
+       docker-compose -f docker-compose-php7.0 up -d
 ```
  - Acesse localhost:8080
+ 
+Destruir container:
+--------------------
+  - Vá até a raíz do projeto e execute o docker-compose.yml
+  
+ ```docker
+      docker-compose -f docker-compose-php5.6 down
+ ```
+ 
+   ou
+             
+ ```docker
+        docker-compose -f docker-compose-php7.0 down
+ ```
 
+Volumes:
+--------------------
+ - Caso queira enviar um arquivo .sql para restore na base de dados baste ir para:
+   ```shell
+   cd ./postgres/tmp
+   ``` 
+ - Caso queira enviar acessar os logs do servidor apache:
+      ```shell
+      cd ./php5.6-ubuntu/logs #escolha a versão
+      ``` 

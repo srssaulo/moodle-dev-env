@@ -16,6 +16,7 @@ services:
         - ./postgres/postgres-data:/var/lib/postgresql/data
         #Scripts
         - ./postgres/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+        - ./postgres/tmp:/tmp #carregamento de arquivos .sql para restore
       environment:
         - "DB_PORT=5433"
         - "POSTGRES_USER=postgres"
@@ -32,6 +33,7 @@ services:
     volumes:
       - ./html:/var/www/html
       - ./moodledatas:/var/moodledatas
+      - ./php7.0-ubuntu/logs:/var/log/apache2
     stdin_open: true
     tty: true
     networks:
