@@ -11,7 +11,8 @@ RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php
 
 RUN apt-get update
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5.6 php5.6-mysql php5.6-pgsql php5.6-gd php-pear php-apcu php5.6-curl php5.6-ldap curl lynx-cur php5.6-zip php5.6-opcache php5.6-intl php5.6-xmlrpc
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5.6 php5.6-mysql php5.6-pgsql php5.6-gd php-pear php-apcu php5.6-curl php5.6-ldap curl lynx-cur php5.6-zip php5.6-opcache php5.6-intl php5.6-xml php5.6-xmlrpc
+
 
 # Enable apache mods.
 RUN a2enmod rewrite
