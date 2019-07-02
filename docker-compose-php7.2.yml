@@ -1,0 +1,48 @@
+# Docker-Compose configuration file.
+
+# v3 syntax
+version: '3'
+
+#networks
+networks:
+  app-env:
+
+services:
+
+# Postgres
+  db:
+      image: postgres:9.6
+      volumes:
+        - ./postgres/postgres-data:/var/lib/postgresql/data
+        #Scripts
+        - ./postgres/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+        - ./postgres/tmp:/tmp #carregamento de arquivos .sql para restore
+      environment:
+        - "DB_PORT=5433"
+        - "POSTGRES_USER=postgres"
+        - "POSTGRES_PASSWORD=123456"
+      ports:
+        - "5433:5432"
+      networks:
+        app-env:
+
+# The Application. Php
+  app:
+    build: php7.2-ubuntu
+    container_name: apachephp
+    volumes:
+      - ./html:/var/www/html
+      - ./moodledatas:/var/moodledatas
+      - ./php7.2-ubuntu/logs:/var/log/apache2
+    stdin_open: true
+    tty: true
+    networks:
+      app-env:
+    ports:
+      - "8080:80"
+    links:
+      - db
+
+
+
+
