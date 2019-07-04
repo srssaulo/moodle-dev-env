@@ -11,6 +11,9 @@ gen
 /html/*/
 /moodledatas/*/
 /postgres/postgres-data/*/
+/php7.2-ubuntu/logs/
+/php7.0-ubuntu/logs/
+/php5.6-ubuntu/logs/
 
 
 

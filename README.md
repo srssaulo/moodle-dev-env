@@ -37,13 +37,19 @@ git clone https://github.com/srssaulo/moodle-dev-env.git
  - Vá até a raíz do projeto e execute o docker-compose.yml
  
 ```docker
-     docker-compose  -f docker-compose-php5.6 up -d
+     docker-compose  -f docker-compose-php5.6.yml up -d
 ```
 
    ou
             
 ```docker
-       docker-compose -f docker-compose-php7.0 up -d
+       docker-compose -f docker-compose-php7.0.yml up -d
+```
+
+   ou
+    
+```docker
+       docker-compose -f docker-compose-php7.2.yml up -d
 ```
  - Acesse localhost:8080
  
