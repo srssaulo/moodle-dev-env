@@ -32,8 +32,13 @@ Você deve/pode Alterar:
 Iniciar container:
 --------------------
 ```git
-git clone https://github.com/srssaulo/moodle-dev-env.git
+    git clone https://github.com/srssaulo/moodle-dev-env.git
 ```
+ - Vá até a raíz do projeto e execute: 
+```bash
+    ./start 7.2 # é necessário passar a versão do php
+```
+ OU     
  - Vá até a raíz do projeto e execute o docker-compose.yml
  
 ```docker
@@ -55,6 +60,12 @@ git clone https://github.com/srssaulo/moodle-dev-env.git
  
 Destruir container:
 --------------------
+  - Vá até a raíz do projeto e execute: 
+
+```bash
+      ./stop 7.2 # é necessário passar a versão do php
+```   
+  OU  
   - Vá até a raíz do projeto e execute o docker-compose.yml
   
  ```docker
@@ -65,6 +76,12 @@ Destruir container:
              
  ```docker
         docker-compose -f docker-compose-php7.0 down
+ ```
+
+   ou
+             
+ ```docker
+        docker-compose -f docker-compose-php7.2 down
  ```
 
 Volumes:
