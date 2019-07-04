@@ -4,11 +4,16 @@ FROM ubuntu:16.04
 MAINTAINER Saulo Rufino de Sá<srssaulo@gmail.com>
 
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
+RUN apt-get update && apt-get -y install  software-properties-common language-pack-en-base python-software-properties
 RUN apt-get update
-RUN apt-get -y upgrade
+
+#
+RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && \
+    apt-get update
 
 # Install apache, PHP, and supplimentary programs. curl and lynx-cur are for debugging the container.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php7.2 php7.2-mysql php7.2-pgsql php7.2-gd php-pear php-apcu php7.2-curl php7.2-ldap curl lynx-cur php7.2-zip php7.2-opcache php7.2-intl php7.2-xmlrpc
+RUN echo "INSTALAÇÃO PHP"
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.2 php7.2-cli php7.2-common libapache2-mod-php7.2 php7.2-pgsql php7.2-gd php-pear php-apcu php7.2-mbstring php7.2-curl php7.2-ldap curl lynx-cur php7.2-zip php7.2-opcache php7.2-intl php7.2-xml php7.2-xmlrpc
 
 # Enable apache mods.
 #RUN php7.0enmod openssl
@@ -33,7 +38,7 @@ RUN  echo "Create devuser >>>>>>" &&\
      chown -R devuser:devuser /home/devuser
 
 
-EXPOSE 80
+
 
 # Copy site into place.
 #ADD app /var/www/site/app
@@ -46,9 +51,14 @@ RUN echo ">-----Iniciando a configuração do MoodleData ------<" && \
     chown www-data /var/moodledatas && \
     chmod 770 /var/moodledatas
 
+RUN echo "Install vim" && \
+    apt-get install -y vim
+
 WORKDIR /var/www/html
 
 # By default, simply start apache.
-CMD /usr/sbin/apache2ctl -D FOREGROUND
+EXPOSE 80
+#CMD /usr/sbin/apache2ctl -D FOREGROUND
+CMD apachectl -D FOREGROUND
 
-USER devuser
+#USER devuser
