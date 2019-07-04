@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo "PHP selecionado: $1"
+
+if [ $1 ]; then
+
+    YML_FILE="./docker-compose-php$1.yml";
+
+    echo "docker-compose selecionado: $YML_FILE";
+
+    exec docker-compose -f $YML_FILE down
+else
+
+    echo "Erro: Versão PHP não informada "
+
+fi
+
