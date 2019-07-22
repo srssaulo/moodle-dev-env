@@ -34,6 +34,7 @@ services:
       - ./html:/var/www/html
       - ./moodledatas:/var/moodledatas
       - ./php7.2-ubuntu/logs:/var/log/apache2
+      - ./php7.2-ubuntu/php.ini:/etc/php/7.2/apache2/php.ini
     stdin_open: true
     tty: true
     networks:
