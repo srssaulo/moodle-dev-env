@@ -3,6 +3,14 @@ FROM ubuntu:16.04
 # Repository/Image Maintainer
 MAINTAINER Saulo Rufino de Sá<srssaulo@gmail.com>
 
+ENV TZ 'America/Recife'
+RUN echo $TZ > /etc/timezone && \
+    apt-get update && apt-get install -y tzdata && \
+    rm /etc/localtime && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    apt-get clean
+
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
 RUN apt-get update && apt-get -y install  software-properties-common language-pack-en-base python-software-properties
 RUN apt-get update
