@@ -3,6 +3,9 @@
 # v3 syntax
 version: '3'
 
+volumes:
+  moodle_dbs:  
+
 #networks
 networks:
   app-env:
@@ -13,7 +16,7 @@ services:
   db:
       image: postgres:9.6
       volumes:
-        - ./postgres/postgres-data:/var/lib/postgresql/data
+        - moodle_dbs:/var/lib/postgresql/data
         #Scripts
         - ./postgres/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
         - ./postgres/tmp:/tmp #carregamento de arquivos .sql para restore
