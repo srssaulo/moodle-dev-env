@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 # Repository/Image Maintainer
 MAINTAINER Saulo Rufino de Sá<srssaulo@gmail.com>
@@ -12,16 +12,16 @@ RUN echo $TZ > /etc/timezone && \
     apt-get clean
 
 # Install PHP From DotDeb, Common Extensions, Composer and then cleanup
-RUN apt-get update && apt-get -y install  software-properties-common language-pack-en-base python-software-properties
+RUN apt-get update && apt-get -y install  software-properties-common language-pack-en-base
 RUN apt-get update
 
 #
-RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && \
+RUN LC_ALL=en_US.UTF-8  && \
     apt-get update
 
-# Install apache, PHP, and supplimentary programs. curl and lynx-cur are for debugging the container.
+# Install apache, PHP, and supplimentary programs. 
 RUN echo "INSTALAÇÃO PHP"
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.2 php7.2-cli php7.2-common libapache2-mod-php7.2 php7.2-pgsql php7.2-gd php-pear php-apcu php7.2-mbstring php7.2-curl php7.2-ldap curl lynx-cur php7.2-zip php7.2-opcache php7.2-intl php7.2-xml php7.2-xmlrpc
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.2 php7.2-cli php7.2-common libapache2-mod-php7.2 php7.2-pgsql php7.2-gd php-pear php-apcu php7.2-mbstring php7.2-curl php7.2-ldap curl  php7.2-zip php7.2-opcache php7.2-intl php7.2-xml php7.2-xmlrpc
 
 # Enable apache mods.
 RUN a2enmod rewrite
